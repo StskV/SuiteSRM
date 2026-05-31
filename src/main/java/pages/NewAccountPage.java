@@ -31,7 +31,7 @@ public class NewAccountPage extends BasePage {
         new Input(driver, "Website").write(account.getWebsite());
         new Input(driver, "Fax").write(account.getFax());
         new EmailInput(driver).write(account.getEmail());
-        new Checkbox(driver, "Opted Out").check();
+        new Checkbox(driver, "Opted Out").check(true);
         new AddressField(driver, "Billing Address", "Street").write(account.getBillingStreet());
         new AddressField(driver, "Billing Address", "City").write(account.getBillingCity());
         new AddressField(driver, "Billing Address", "State/Region").write(account.getBillingState());

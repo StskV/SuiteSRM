@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public class Checkbox {
+
     private final WebDriver driver;
     private final String label;
 
@@ -14,12 +15,12 @@ public class Checkbox {
         this.label = label;
     }
 
-    public void check() {
-        String xpath = String.format("//*[contains(text(), '%s')]/parent::div//input", label);
-        WebElement checkboxElement = driver.findElement(By.xpath(xpath));
-        if (!checkboxElement.isSelected()) {
-            JavascriptExecutor executor = (JavascriptExecutor) driver;
-            executor.executeScript("arguments[0].click();", checkboxElement);
+    public void check(boolean checked) {
+        String titleValue = label.equals("Opted Out") ? "Opt Out" : label;
+        String xpathExpression = String.format("//div[contains(@id, 'emailAddressRow0')]//input[@title='%s']", titleValue);
+        WebElement checkbox = driver.findElement(By.xpath(xpathExpression));
+        if (checkbox.isSelected() != checked) {
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", checkbox);
         }
     }
 }
